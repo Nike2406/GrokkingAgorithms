@@ -1,7 +1,11 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
-
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun main() {
+    val list = mutableListOf(2, 4, 6)
+    println(quickSum(list))
 }
+
+fun quickSum(list: MutableList<Int>): Int =
+    if (list.isEmpty()) {
+        0
+    } else {
+        list[0] + quickSum(list.also(MutableList<Int>::removeFirst))
+    }
