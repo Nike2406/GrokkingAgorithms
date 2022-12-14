@@ -1,11 +1,13 @@
 fun main() {
-    val list = mutableListOf(2, 4, 6)
-    println(quickSum(list))
+    val list = mutableListOf(2, 4, 6, 3, 1, 12, 5, 4, 0)
+    println(findMaxDigit(list))
 }
 
-fun quickSum(list: MutableList<Int>): Int =
-    if (list.isEmpty()) {
-        0
+fun findMaxDigit(list: MutableList<Int>): Int {
+    return if (list.size == 1) {
+        list[0]
     } else {
-        list[0] + quickSum(list.also(MutableList<Int>::removeFirst))
+        val i = if (list[0] > list[1]) 1 else 0
+        findMaxDigit(list.also { it.removeAt(i) })
     }
+}
